@@ -7,6 +7,9 @@ TODO Schemes to add
 		-ICRF so you can move like a satellite does
 		-around a satellite which in turn is moving in ICRF (become an astronaut repairing the ISS!)
 */
+if(!Hyper) {
+    var Hyper = function (){};
+}
 Hyper.SpaceNav = function(){};
 Hyper.SpaceNav.moveTypes=['fiveDof','fiveDofCamUp','sixDofTrue','sixDofCurved'];
 Hyper.SpaceNav.keyboardCon=0;

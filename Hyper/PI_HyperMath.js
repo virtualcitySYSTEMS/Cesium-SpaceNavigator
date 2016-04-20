@@ -38,7 +38,9 @@ Forward   Up
 [2]       [5]      [8]    z components
 
 */
-
+if(!Hyper) {
+    var Hyper = function (){};
+}
 //
 // 2D
 //

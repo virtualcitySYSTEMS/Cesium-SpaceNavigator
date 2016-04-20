@@ -4,6 +4,9 @@ showRaw:true displays raw input data in the console so you can figure out the ma
 deadZones are used to disable small inputs from registering, they are in terms of maxInput rather than -1 to +1
 scales can be used to scale and reverse the various axis
 */
+if(!Hyper) {
+    var Hyper = function (){};
+}
 Hyper.input = function(){};
 Hyper.input.controllers=[];
 Hyper.input.keysDown=[];
@@ -33,10 +36,11 @@ Hyper.input.init = function()
 	viewer.canvas.addEventListener('mousewheel', Hyper.input.canvasMouseWheel, false);
 	
 	//setup timeline interaction
-	viewer.timeline._timeBarEle.tabIndex=1001;
+	/*viewer.timeline._timeBarEle.tabIndex=1001;
 	viewer.timeline._timeBarEle.onclick = function() {viewer.timeline._timeBarEle.focus();}
 	viewer.timeline._timeBarEle.addEventListener("keydown", function(e){Hyper.input.keyDown(e,"timeline");}, false); 
-	viewer.timeline._timeBarEle.addEventListener("keyup", function(e){Hyper.input.keyUp(e,"timeline");}, false); 
+	viewer.timeline._timeBarEle.addEventListener("keyup", function(e){Hyper.input.keyUp(e,"timeline");}, false);
+	 */
 	//createMouseWheelCallback in Timeline.js
 	//JulianDate.secondsDifference in JulianDate.js
 	
@@ -69,7 +73,11 @@ Hyper.input.waitForConnection = function()
 	{
 		var i=0;while(i<navigator.getGamepads().length-1)//freezes on the last entry
 		{
-			//if(navigator.getGamepads()[i]===undefined){continue;}
+            // check for if an gamepad exist
+			if(navigator.getGamepads()[i]===undefined){
+                i+=1;
+                continue;
+            }
 			if(navigator.getGamepads()[i].axes.length==6)
 			{
 				console.log("connecting "+navigator.getGamepads()[i].id);
@@ -77,7 +85,7 @@ Hyper.input.waitForConnection = function()
 				device:i,showRaw:false,maxInput:1,deadZones:[0.01,0.01,0.01,0.01,0.01,0.01],
 				scales:[1,-1,-1,-1,1,1]});
 			}
-			i+=1;
+            i+=1;
 		}
 	}
 }

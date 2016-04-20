@@ -1,5 +1,8 @@
 //Dependencies: a core Space Navigator file 
 //Purpose: calculate shared resources once per frame for greater efficiency
+if(!Hyper) {
+    var Hyper = function (){};
+}
 Hyper.common = function(){};
 
 //TODO keep track of frametime, var timeNow = new Date().getTime();
